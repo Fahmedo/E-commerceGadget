@@ -1,0 +1,57 @@
+﻿@model IEnumerable<MobileGadget.Model.Phone>
+
+<partial name="_Notification" />
+
+
+@*<div class="row pb-4">
+    @foreach (var phone in Model)
+    {
+        <div class="col-2 pt-4">
+            <div class="row pb-6">
+                <div class="col-12 p-1" style="border:1px solid #008cba; border-radius:5px">
+                    <div class="card">
+                        <img src="@phone.ImageUrl" width="100%" style="border-radius:5px; border:1px solid #bbb9b9" />
+                        </div>
+               </div>
+            </div>
+            </div>
+    }
+    
+    </div>*@
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary"></h2>
+        </div>
+        
+        <div class="col-6 text-end">
+                <a asp-controller="Phone" asp-action="Upsert" class="btn btn-primary">
+                <i class="bi bi-plus-square"></i> &nbsp; Create new item
+            </a>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+
+<table id="tblData" class="table table-boardered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>Operating system</th>
+            <th>Display order</th>
+            <th></th>
+           
+
+        </tr>
+    </thead>
+</table>
+@*
+    @section Scripts{
+        {
+            <partial name="_ValidationScriptsPartial" />
+        }
+    }*@
+@section Scripts{
+    <script src="~/js/Phone.js"></script>
+}

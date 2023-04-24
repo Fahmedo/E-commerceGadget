@@ -1,0 +1,76 @@
+﻿@model MobileGadget.Model.ViewModels.PhoneVM
+
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
+	<input asp-for="Phone.Id" hidden />
+	<input asp-for="Phone.ImageUrl" hidden />
+
+	<div class="row">
+		<div class="col-10">
+			<div class="border p-3 mt-4 row">
+				<div class="col-12 pb-2">
+					<h2 class="text-primary">@(Model.Phone.Id != 0 ? "Update" : "Create")  Product</h2>
+					<hr />
+				</div>
+				<div asp-validation-summary="All"></div>
+				<div class="mb-3 text-primary">
+					<label asp-for="Phone.OperatingSystem"></label>
+					<input asp-for="Phone.OperatingSystem" class="form-control" />
+					<span asp-validation-for="Phone.OperatingSystem" class="text-danger"></span>
+				</div>
+
+				<div class="mb-3 col-6">
+					<label asp-for="Phone.DisplayOrder"></label>
+					<input asp-for="Phone.DisplayOrder" class="form-control" />
+					<span asp-validation-for="Phone.DisplayOrder" class="text-danger"></span>
+				</div>
+
+
+				<div class="mb-3">
+					<label asp-for="Phone.ImageUrl"></label>
+					<input type="file" id="uploadBox" name="file" class="form-control" />
+				</div>
+
+
+				<div class="col-12">
+					@if (Model.Phone.Id != 0)
+					{
+						<button type="submit" class="btn btn-primary" style="width:150px">Update</button>
+					}
+					else
+					{
+						<button type="submit" onclick="return ValidateInput()" class="btn btn-primary" style="width:150px">Create</button>
+					}
+					<a asp-controller="Phone" asp-action="Index" class="btn btn-secondary" style="width:150px">
+						Back to List
+					</a>
+				</div>
+
+			</div>
+		</div>
+		<div class="col-2 pt-4">
+			<img src="@Model.Phone.ImageUrl"
+				 width="100%" style="border-radius:5px; border:1px solid #bbb9b9" />
+		</div>
+	</div>
+
+
+
+
+
+
+
+</form>
+<script>
+
+	function ValidateInput() {
+		if (document.getElementById("uploadBox").value == "") {
+			Swal.fire({
+				icon: 'error',
+				title: 'Oops...',
+				text: 'Please upload an Image!',
+			});
+			return false;
+		}
+		return true;
+	}
+</script>

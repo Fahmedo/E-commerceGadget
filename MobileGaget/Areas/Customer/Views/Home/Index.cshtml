@@ -1,0 +1,66 @@
+﻿@model IEnumerable<MobileGadget.Model.Product>
+
+
+
+
+<form asp-action="Index" method="get">
+
+    <div class="input-group md-form form-control-sm form-2 pl-0">
+
+        <label for="SearchString"></label>
+        <input class="form-control my-0 py-1 red-border" type="search" placeholder="Search products" name="SearchString"
+               aria-describedby="basic-addon1" value="@ViewData["ProductFilter"]" />
+               <div class="input-group-append">
+                   <span class="input-group-text red ligthen-3" id="basic-text1">
+                <i class="bi bi-search"></i>
+                   </span>
+
+               </div>
+        <input type="submit" value="Search" class="btn btn-primary" />
+
+        <a asp-action="Index" class="btn btn-primary mx-4"> <i class="bi bi-bag-fill"></i> &nbsp; All product</a>
+
+    </div>
+
+
+
+
+
+
+    
+</form>
+
+<div class="row pb-4">
+    @foreach (var product in Model)
+    {
+        
+        <div class="col-lg-3 col-md-6 m-4">
+            <div class="row pb-6">
+                <div class="col-12 p-1" style="border:1px solid #008cba; border-radius:5px">
+                    <div class="card">
+                        <img src="@product.ImageUrl" class="card-img-top rounded" />
+                        <div class="card-body">
+                            <div class="pl-1">
+                                <p class="card-title h5 text-primary">@product.ProductName</p>
+                                <p class="card-title  text-info">  <b>@product.ProductModel</b></p>
+                                <p class="card-title  text-info">BH: <b>@product.BatteryCapacity</b></p>
+                                <p class="card-title  text-info"> space: <b>@product.Storage</b></p>
+                                <p class="card-title  text-info">Price: <b>@product.Price.ToString("n")</b></p>
+                                <div>
+                                    <a asp-action="Details" class="btn btn-primary form-control" asp-route-productId="@product.Id">
+                                        More Details
+                                    </a>
+                                </div>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+                           
+    }
+    </div>

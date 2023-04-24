@@ -1,0 +1,115 @@
+﻿@model MobileGadget.Model.ViewModels.TechnicianVM
+
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
+	<input asp-for="Technician.Id" hidden />
+	<input asp-for="Technician.ImageUrl" hidden />
+
+	<div class="row">
+		<div class="col-10">
+			<div class="border p-3 mt-4 row">
+				<div class="col-12 pb-2">
+					<h2 class="text-primary">@(Model.Technician.Id != 0 ? "Update" : "Create")  User</h2>
+					<hr />
+				</div>
+				<div asp-validation-summary="All"></div>
+				<div class="mb-3 text-primary">
+					<label asp-for="Technician.CompanyName"></label>
+					<input asp-for="Technician.CompanyName" class="form-control" />
+					<span asp-validation-for="Technician.CompanyName" class="text-danger"></span>
+				</div>
+				
+				<div class="mb-3 col-6">
+					<label asp-for="Technician.EmailAddress"></label>
+					<input asp-for="Technician.EmailAddress" class="form-control" />
+					<span asp-validation-for="Technician.EmailAddress" class="text-danger"></span>
+				</div>
+
+				<div class="mb-3 col-6">
+					<label asp-for="Technician.PhoneNumber"></label>
+					<input asp-for="Technician.PhoneNumber" class="form-control" />
+					<span asp-validation-for="Technician.PhoneNumber" class="text-danger"></span>
+				</div>
+
+				<div class="mb-3">
+					<label asp-for="Technician.ImageUrl"></label>
+					<input type="file" id="uploadBox" name="file" class="form-control" />
+				</div>
+
+
+				<div class="mb-3 col-6">
+				<label asp-for="Technician.StreetAddress"></label>
+				<input asp-for="Technician.StreetAddress" class="form-control" />
+				<span asp-validation-for="Technician.StreetAddress" class="text-danger"></span>
+			</div>
+
+
+
+				<div class="mb-3 col-6">
+					<label asp-for="Technician.State"></label>
+					<input asp-for="Technician.State" class="form-control" />
+					<span asp-validation-for="Technician.State" class="text-danger"></span>
+				</div>
+
+
+			<div class="mb-3 col-6">
+				<label asp-for="Technician.City"></label>
+				<input asp-for="Technician.City" class="form-control" />
+				<span asp-validation-for="Technician.City" class="text-danger"></span>
+			</div>
+
+
+
+
+				<div class="mb-3 col-6">
+					<label asp-for="Technician.PostalCode"></label>
+				<input asp-for="Technician.PostalCode" class="form-control" />
+				<span asp-validation-for="Technician.PostalCode" class="text-danger"></span>
+				</div>
+				
+				
+				
+
+				
+				<div class="col-12">
+					@if (Model.Technician.Id != 0)
+					{
+						<button type="submit" class="btn btn-primary" style="width:150px">Update</button>
+					}
+					else
+					{
+						<button type="submit" onclick="return ValidateInput()" class="btn btn-primary" style="width:150px">Create</button>
+					}
+					<a asp-controller="Phone" asp-action="Index" class="btn btn-secondary" style="width:150px">
+						Back to List
+					</a>
+				</div>
+
+			</div>
+		</div>
+		<div class="col-2 pt-4">
+			<img src="@Model.Technician.ImageUrl"
+				 width="100%" style="border-radius:5px; border:1px solid #bbb9b9" />
+		</div>
+	</div>
+
+
+
+
+
+
+
+</form>
+<script>
+		
+		function ValidateInput() {
+			if (document.getElementById("uploadBox").value == "") {
+				Swal.fire({
+					icon: 'error',
+					title: 'Oops...',
+					text: 'Please upload an Image!',
+				});
+				return false;
+			}
+			return true;
+		}
+	</script>
